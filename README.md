@@ -1,0 +1,1 @@
+# Daily-Human-Activity-Recognition-using-non-intrusive-sensors
