@@ -25,6 +25,7 @@ Link to the paper: https://www.mdpi.com/1424-8220/21/16/5270
 The model has been trained on an Intel(R) Core(TM) i9-10900K CPU@3.70 GHz / 128 Gb with two RTX3090 GPUs.
 
 # Configuration of PrepareData.py
+
 - It is possible to filter the number of events of the activities to be placed in this part of the code together with the filtering ratio (as a percentage of 1).
  ```
 filters = {
@@ -37,11 +38,21 @@ filters = {
 # Training percentages
 validation_percent = 0.1
 test_percent = 0.2
-  ```
-- In progress...
+```
+- By modifying the secondsDIV parameter, the time at which events are sampled can be varied. In the same way, by modifying the dimWINDOW parameter, the size of the sliding window can be varied. Finally, by varying the stack_size parameter, the stack size of consecutive samples can be changed before unordering them.
 ```
 secondsDIV = 60
-max_lenght = 33
 dimWINDOW = 5
 stack_size = 2
-  ```
+```
+
+# Configuration of Training.py
+- If the units parameter is modified, the number of cells in the LSTM layer can be changed. On the other hand, if the batch_size parameter is modified, the number of samples that the program takes together to train the neural network can be varied. If the epochs parameter is modified, the number of times the program takes the totality of the data to train the neural network is changed. Finally, the parameter DIMENSION is used to indicate to the program the number of components contained in a line of data (depending on the window size).
+```
+# Important parameters
+units = 64
+batch_size = 256
+epochs = 50
+DIMENSION = 5*33 + 2 # Data dimension (60 min * 33 sensors + 2 hours)
+```
+
